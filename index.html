@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>国商青年 | 遇见有趣校友</title>
+    <style>
+        /* --- 顶级 UI 样式定义 --- */
+        :root {
+            --gx-blue: #007AFF; /* 商务领航蓝 */
+            --gx-gradient: linear-gradient(135deg, #007AFF 0%, #00C6FF 100%);
+            --bg-color: #F8F9FC;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background: var(--bg-color); font-family: -apple-system, system-ui, sans-serif;
+            overflow: hidden;
+        }
+
+        /* --- 顶部导航 --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: 60px;
+            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 1000; border-bottom: 0.5px solid rgba(0,0,0,0.05);
+        }
+        header .logo { font-size: 18px; font-weight: 800; color: var(--gx-blue); }
+
+        /* --- 内容区域控制器 --- */
+        .page { display: none; height: 100vh; padding: 70px 16px 100px; overflow-y: auto; }
+        .page.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 模块1：发现（卡片流） --- */
+        .card {
+            background: white; border-radius: 24px; overflow: hidden;
+            box-shadow: var(--shadow); margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.3);
+        }
+        .card-img { width: 100%; height: 350px; background: #eee center/cover; }
+        .card-info { padding: 20px; position: relative; }
+        .card-info h3 { margin: 0; font-size: 22px; }
+        .card-info p { color: #8E8E93; font-size: 14px; margin: 5px 0; }
+        .verify-badge { background: #E1F5FE; color: var(--gx-blue); padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; }
+
+        /* --- 模块2：校园圈 --- */
+        .moment { background: white; border-radius: 20px; padding: 15px; margin-bottom: 15px; }
+        .moment-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; margin-right: 10px; }
+        .moment-content { font-size: 15px; line-height: 1.5; color: #333; }
+
+        /* --- 底部底部导航 --- */
+        nav {
+            position: fixed; bottom: 0; width: 100%; height: 84px;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(25px);
+            display: flex; justify-content: space-around; align-items: center;
+            padding-bottom: env(safe-area-inset-bottom); border-top: 0.5px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item { text-align: center; flex: 1; color: #AEAEB2; transition: 0.3s; }
+        .nav-item.active { color: var(--gx-blue); transform: translateY(-2px); }
+        .nav-item i { font-size: 24px; display: block; margin-bottom: 4px; font-style: normal; }
+        .nav-item span { font-size: 10px; font-weight: 600; }
+
+        /* 按钮动效 */
+        .btn-chat {
+            position: absolute; right: 20px; top: -25px;
+            width: 50px; height: 50px; border-radius: 25px;
+            background: var(--gx-gradient); color: white;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 15px rgba(0,122,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">GXIBVC · 青年</div>
+        <div style="font-size: 20px;">🔍</div>
+    </header>
+
+    <div id="home" class="page active">
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80');"></div>
+            <div class="card-info">
+                <div class="btn-chat">💬</div>
+                <h3>陈同学, 19 <span class="verify-badge">已认证</span></h3>
+                <p>国际商务系 | 东盟校区</p>
+                <p>“想找个搭子周末一起去万象城探店☕️”</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80');"></div>
+            <div class="card-info">
+                <div class="btn-chat">💬</div>
+                <h3>张学长, 21 <span class="verify-badge">已认证</span></h3>
+                <p>跨境电商专业 | 大学路校区</p>
+                <p>“招募全国大学生跨境电商大赛队友，来NB的一起！”</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="moments" class="page">
+        <div class="moment">
+            <div class="moment-header">
+                <div class="avatar" style="background: var(--gx-gradient);"></div>
+                <div><strong>国商小喇叭</strong><br><small>10分钟前</small></div>
+            </div>
+            <div class="moment-content">今天东盟校区的晚霞好美，大家看到了吗？📸</div>
+        </div>
+        <div class="moment">
+            <div class="moment-header">
+                <div class="avatar" style="background: #ccc;"></div>
+                <div><strong>匿名同学</strong><br><small>2小时前</small></div>
+            </div>
+            <div class="moment-content">求问：国际贸易实务的期末考试难吗？😭</div>
+        </div>
+    </div>
+
+    <div id="messages" class="page">
+        <div style="text-align: center; padding-top: 50px; color: #8E8E93;">
+            <p>暂无新消息，去打个招呼吧~</p>
+        </div>
+    </div>
+
+    <div id="profile" class="page">
+        <div style="background: white; border-radius: 24px; padding: 30px; text-align: center;">
+            <div class="avatar" style="width: 80px; height: 80px; margin: 0 auto 15px; background: var(--gx-gradient);"></div>
+            <h2>尚未登录</h2>
+            <p>点击开启你的国商社交之旅</p>
+            <button style="background: var(--gx-gradient); color: white; border: none; padding: 12px 40px; border-radius: 20px; font-size: 16px; font-weight: bold; margin-top: 10px;">微信一键认证</button>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-item active" onclick="showPage('home')"><i>🔥</i><span>遇见</span></div>
+        <div class="nav-item" onclick="showPage('moments')"><i>🌍</i><span>动态</span></div>
+        <div class="nav-item" onclick="showPage('messages')"><i>💌</i><span>消息</span></div>
+        <div class="nav-item" onclick="showPage('profile')"><i>👤</i><span>我的</span></div>
+    </nav>
+
+    <script>
+        // 极简页面切换逻辑
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+            // 更新导航栏状态
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if(item.innerText.includes(event.currentTarget.innerText)) {
+                    // 简单的匹配逻辑
+                }
+            });
+            // 手动处理高亮
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(i => i.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
